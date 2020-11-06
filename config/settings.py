@@ -26,7 +26,7 @@ SECRET_KEY = '#k^ll2tat!ya@_z8wya+a$ig#22p2mz)4!n1*gg0k7z4^!n7+$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['online-examintion.herokuapp.com']
 
 
 # Application definition
