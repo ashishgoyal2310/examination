@@ -1,0 +1,44 @@
+{% extends 'exam-base.html' %}
+
+{% block css_scripts %}
+{% endblock %}
+
+{% block content %}
+    <form class="mb-2" method='post'>
+        {% csrf_token %}
+        {% if error_message %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ error_message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        {% endif %}
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value="{{ exam_series_obj.name }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Code</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value="{{ exam_series_obj.code }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Exam Pin</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" placeholder="Exam Pin" name="exam_pin">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
+
+{% block js_scripts %}
+    <script>
+      $(document).ready(function() {
+      } );
+    </script>
+{% endblock %}

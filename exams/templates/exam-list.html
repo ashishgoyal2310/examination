@@ -1,0 +1,40 @@
+{% extends 'exam-base.html' %}
+
+{% block css_scripts %}
+    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <table id="id_examlist" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Valid From</th>
+                <th>Valid To</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for series in exam_series %}
+            <tr>
+                <td>{{ series.name }}</td>
+                <td>{{ series.code }}</td>
+                <td>{{ series.valid_from }}</td>
+                <td>{{ series.valid_to }}</td>
+                <td><a href="{% url 'exam-series-detail' series.code %}" class="btn btn-primary">Enroll</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block js_scripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#id_examlist').DataTable();
+      } );
+    </script>
+{% endblock %}
