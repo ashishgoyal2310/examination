@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext as _
+from django.utils import timezone
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -57,8 +58,8 @@ class UserExam(models.Model):
 
     exam_pin = models.CharField(_('exam pin'), max_length=8, unique=True)
 
-    started_at = models.DateTimeField(_("valid from"), auto_now=False, auto_now_add=False)
-    ended_at = models.DateTimeField(_("valid from"), auto_now=False, auto_now_add=False)
+    started_at = models.DateTimeField(_("Started At"), auto_now=False, auto_now_add=False, null=True, blank=True,)
+    ended_at = models.DateTimeField(_("Ended At"), auto_now=False, auto_now_add=False, null=True, blank=True,)
 
 
 class UserQuestion(models.Model):
@@ -68,3 +69,6 @@ class UserQuestion(models.Model):
 
     is_marked = models.BooleanField(_('marked for review'), default=False)
     is_answered = models.BooleanField(_('answer marked'), default=False)
+
+    created_at = models.DateTimeField(_("Created At"), auto_now=False, auto_now_add=True)
+    updated_at = models.DateTimeField(_("Updated At"), auto_now=True, auto_now_add=False)
