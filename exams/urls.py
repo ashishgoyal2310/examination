@@ -10,4 +10,5 @@ urlpatterns = [
     url(r"^(?P<slug>[\w-]+)/$", views.ExamSeriesDetailView.as_view(), name="exam-series-detail"),
 
     url(r"^user-exam/(?P<pk>\d+)/question/$", views.UserExamQuestionApiView.as_view(), name="user-exam-question"),
+    url(r"^user-exam/(?P<pk>\d+)/question-palette/$", views.UserExamQuestionPaletteApiView.as_view(), name="user-exam-question-palette"),
 ]

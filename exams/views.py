@@ -124,6 +124,40 @@ class UserExamQuestionApiView(View):
         return JsonResponse(_response_data, safe=False)
 
 
+class UserExamQuestionPaletteApiView(View):
+
+    def fetch_question_palette_data(self, user_exam):
+        questions = user_exam.exam_series.questions.all().order_by('rank')
+        user_questions = user_exam.user_questions.all()
+        user_questions_mapping = {
+            obj.question_id : (obj.is_marked, True if obj.answer else False)
+            for obj in user_questions
+        }
+
+        question_data = []
+        for obj in questions:
+            is_marked, is_answered = user_questions_mapping.get(obj.id, (False, False))
+            question_data.append({
+                'id': obj.id,
+                'is_marked': is_marked,
+                'is_answered': is_answered
+            })
+
+        return {
+            'count': questions.count(),
+            'questions': question_data
+        }
+
+    def get(self, request, pk, *args, **kwargs):
+        user_exam = UserExam.objects.filter(user=request.user, pk=pk).first()
+        if not user_exam:
+            return JsonResponse({'message': 'Bad Request from server (User Exam).'}, safe=False, status=400)
+
+        _response_data = self.fetch_question_palette_data(user_exam)
+
+        return JsonResponse(_response_data, safe=False)
+
+
 class ScreenView(TemplateView):
     template_name = "exam-question.html"
 
