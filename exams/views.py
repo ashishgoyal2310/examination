@@ -158,10 +158,10 @@ class UserExamQuestionPaletteApiView(View):
         return JsonResponse(_response_data, safe=False)
 
 
-class ScreenView(TemplateView):
-    template_name = "exam-question.html"
+# class ScreenView(TemplateView):
+#     template_name = "exam-question.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user_exam'] = UserExam.objects.filter().first()
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['user_exam'] = UserExam.objects.filter().first()
+#         return context
