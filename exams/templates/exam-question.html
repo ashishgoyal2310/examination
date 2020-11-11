@@ -433,14 +433,14 @@
           data = $('form').serializeObject();
           data['is_marked'] = true;
           sendUserQuestion(fetchUserQuestionUrl, data);
-          handleExamQuestionPaletteOnSubmit(data);
+          handleExamQuestionPaletteUIOnSubmit(data);
         })
 
         let saveNextBtnEle = $('#idSaveNextBtn');
         saveNextBtnEle.on('click', function(eve) {
           data = $('form').serializeObject();
           sendUserQuestion(fetchUserQuestionUrl, data);
-          handleExamQuestionPaletteOnSubmit(data);
+          handleExamQuestionPaletteUIOnSubmit(data);
         })
 
         fetchUserQuestionPalette(fetchUserQuestionPaletteUrl);
